@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import AddMealDialog from './components/add-meal/AddMealDialog';
 
 const colours = {
   white: '#FFFFFF',
@@ -7,6 +8,7 @@ const colours = {
   textSecondary: '#757575',
   borderColor: '#E0E0E0',
   accent: '#FF5722',
+  tint: '#f1f1f1',
 };
 
 export const styles = StyleSheet.create({
@@ -54,5 +56,53 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  AddMealDialog: {
+    overlay: {
+      flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    modalContent: {
+      width: 380,
+      height: 400,
+      backgroundColor: colours.white,
+      justifyContent: 'space-between',
+      borderRadius: 10,
+    },
+    inputSection: {
+      marginTop: 20,
+      paddingHorizontal: 20,
+    },
+    inputLabel: {
+      fontSize: 12,
+      marginBottom: 5,
+      color: colours.textPrimary,
+    },
+    textInput: {
+      borderRadius: 5,
+      padding: 10,
+      fontSize: 14,
+      backgroundColor: colours.tint,
+      color: colours.textSecondary,
+    },
+    ingredientSection: {
+      marginTop: 20,
+      paddingHorizontal: 20,
+      flexDirection: 'row',
+      gap: 10,
+      flex: 1,
+    },
+    ingredientsInput: {
+      flex: 1,
+    },
+    buttonsSection: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gap: 10,
+      padding: 20,
+      flex: 1,
+    },
   },
 });
