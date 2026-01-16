@@ -1,9 +1,39 @@
-import { Modal, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import {
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+  Keyboard,
+} from 'react-native';
 import { X } from 'lucide-react-native';
 import { styles } from '../../app-styles.js';
 import Button from '../../common/Button.jsx';
+import { useState } from 'react';
 
-export default function AddMealDialog({ onClose }) {
+export default function AddMealDialog({ onClose, onCreate }) {
+  const [name, setName] = useState('');
+  const [calories, setCalories] = useState('');
+  const [protein, setProtein] = useState('');
+  const [carbs, setCarbs] = useState('');
+  const [fat, setFat] = useState('');
+
+  const addPressHandler = () => {
+    // construct new meal object
+    const newMeal = {
+      name,
+      calories: Number(calories),
+      protein: Number(protein),
+      carbs: Number(carbs),
+      fat: Number(fat),
+    };
+    // call onCreate with new meal => submit to parent
+    onCreate(newMeal);
+    // close the dialog
+    onClose();
+    // clear keyboard
+    Keyboard.dismiss();
+  };
   return (
     <Modal
       transparent
@@ -34,6 +64,8 @@ export default function AddMealDialog({ onClose }) {
             <TextInput
               placeholder='e.g. Pizza slice'
               style={styles.AddMealDialog.textInput}
+              value={name}
+              onChangeText={setName}
             />
           </View>
           <View style={styles.AddMealDialog.inputSection}>
@@ -42,6 +74,8 @@ export default function AddMealDialog({ onClose }) {
               placeholder='0'
               style={styles.AddMealDialog.textInput}
               inputMode='numeric'
+              value={calories}
+              onChangeText={setCalories}
             />
           </View>
 
@@ -53,6 +87,8 @@ export default function AddMealDialog({ onClose }) {
                 placeholder='0'
                 style={styles.AddMealDialog.textInput}
                 inputMode='numeric'
+                value={protein}
+                onChangeText={setProtein}
               />
             </View>
             <View style={styles.AddMealDialog.ingredientsInput}>
@@ -61,6 +97,8 @@ export default function AddMealDialog({ onClose }) {
                 placeholder='0'
                 style={styles.AddMealDialog.textInput}
                 inputMode='numeric'
+                value={carbs}
+                onChangeText={setCarbs}
               />
             </View>
             <View style={styles.AddMealDialog.ingredientsInput}>
@@ -69,6 +107,8 @@ export default function AddMealDialog({ onClose }) {
                 placeholder='0'
                 style={styles.AddMealDialog.textInput}
                 inputMode='numeric'
+                value={fat}
+                onChangeText={setFat}
               />
             </View>
           </View>
@@ -87,7 +127,7 @@ export default function AddMealDialog({ onClose }) {
             />
             <Button
               title='Add'
-              onPress={() => {}}
+              onPress={addPressHandler}
             />
           </View>
         </View>

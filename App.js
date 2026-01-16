@@ -8,8 +8,14 @@ import MealSection from './components/meal-section/MealSection.jsx';
 import { useState } from 'react';
 export default function App() {
   const [showAddMeal, setShowAddMeal] = useState(false);
+  const [meals, setMeals] = useState([]);
   const addMealPressHandler = () => {
     setShowAddMeal(true);
+  };
+  const createMealHandler = (meal) => {
+    setMeals((currentMeals) => [...currentMeals, meal]);
+    console.log('Meal created:', meal);
+    console.log('Meals: ', meals);
   };
   return (
     <SafeAreaProvider>
@@ -28,7 +34,12 @@ export default function App() {
         <MealSection onAddMeal={addMealPressHandler} />
 
         {/* Add Meal Dialog */}
-        {showAddMeal && <AddMealDialog onClose={() => setShowAddMeal(false)} />}
+        {showAddMeal && (
+          <AddMealDialog
+            onClose={() => setShowAddMeal(false)}
+            onCreate={createMealHandler}
+          />
+        )}
 
         {/* App Bar */}
         <View style={[styles.endSection]}>
