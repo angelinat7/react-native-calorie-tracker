@@ -66,13 +66,13 @@ export const styles = StyleSheet.create({
     },
     modalContent: {
       width: 380,
-      height: 400,
+      height: 420,
       backgroundColor: colours.white,
       justifyContent: 'space-between',
       borderRadius: 10,
     },
     inputSection: {
-      marginTop: 20,
+      marginBottom: 20,
       paddingHorizontal: 20,
     },
     inputLabel: {
@@ -97,12 +97,22 @@ export const styles = StyleSheet.create({
     ingredientsInput: {
       flex: 1,
     },
-    buttonsSection: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      gap: 10,
-      padding: 20,
-      flex: 1,
+  },
+  buttonStyles: {
+    button: {
+      width: 120,
+      textAlign: 'center',
+      borderWidth: 1,
+      borderRadius: 5,
+      fontWeight: '600',
+      paddingVertical: 10,
+    },
+    primary: {
+      color: 'white',
+      backgroundColor: 'black',
+    },
+    secondary: {
+      borderColor: colours.textSecondary,
     },
   },
 });

@@ -1,6 +1,7 @@
 import { Modal, Text, TouchableOpacity, View, TextInput } from 'react-native';
 import { X } from 'lucide-react-native';
 import { styles } from '../../app-styles.js';
+import Button from '../../common/Button.jsx';
 
 export default function AddMealDialog({ onClose }) {
   return (
@@ -71,13 +72,23 @@ export default function AddMealDialog({ onClose }) {
               />
             </View>
           </View>
-          <View style={styles.AddMealDialog.buttonsSection}>
-            <TouchableOpacity onPress={onClose}>
-              <Text>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text>Add</Text>
-            </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 10,
+              justifyContent: 'center',
+              padding: 20,
+            }}
+          >
+            <Button
+              title='Cancel'
+              onPress={onClose}
+              type='secondary'
+            />
+            <Button
+              title='Add'
+              onPress={() => {}}
+            />
           </View>
         </View>
       </View>
