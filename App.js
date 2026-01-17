@@ -17,6 +17,7 @@ export default function App() {
     console.log('Meal created:', meal);
     console.log('Meals: ', meals);
   };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
@@ -31,7 +32,10 @@ export default function App() {
         </View>
 
         {/* Meal Section */}
-        <MealSection onAddMeal={addMealPressHandler} />
+        <MealSection
+          onAddMeal={addMealPressHandler}
+          meals={meals}
+        />
 
         {/* Add Meal Dialog */}
         {showAddMeal && (

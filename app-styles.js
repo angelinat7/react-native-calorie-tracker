@@ -48,8 +48,8 @@ export const styles = StyleSheet.create({
   },
   subheading: {
     alignItems: 'center',
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: 'bold',
     color: colours.textSecondary,
   },
   mealSection: {
@@ -98,13 +98,41 @@ export const styles = StyleSheet.create({
       flex: 1,
     },
   },
+  MealCard: {
+    card: {
+      flexDirection: 'column',
+      backgroundColor: colours.white,
+      borderRadius: 5,
+      padding: 8,
+      marginVertical: 5,
+      backgroundColor: colours.tint,
+    },
+    title: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+    },
+    mealName: {
+      fontSize: 18,
+      fontWeight: '600',
+      color: colours.textPrimary,
+    },
+    nutritionInfo: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    nutritionInfoText: {
+      fontSize: 10,
+      lineHeight: 16,
+    },
+  },
   buttonStyles: {
     button: {
       width: 120,
       textAlign: 'center',
       borderWidth: 1,
       borderRadius: 5,
-      fontWeight: '600',
+      fontWeight: 'bold',
       paddingVertical: 10,
     },
     primary: {

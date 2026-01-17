@@ -10,26 +10,15 @@ import { X } from 'lucide-react-native';
 import { styles } from '../../app-styles.js';
 import Button from '../../common/Button.jsx';
 import { useState } from 'react';
+import { useMealForm } from '../../hooks/useMealForm.jsx';
 
 export default function AddMealDialog({ onClose, onCreate }) {
-  const [name, setName] = useState('');
-  const [calories, setCalories] = useState('');
-  const [protein, setProtein] = useState('');
-  const [carbs, setCarbs] = useState('');
-  const [fat, setFat] = useState('');
+  const { values, error, setField, submit } = useMealForm(onCreate);
 
   const addPressHandler = () => {
-    // construct new meal object
-    const newMeal = {
-      name,
-      calories: Number(calories),
-      protein: Number(protein),
-      carbs: Number(carbs),
-      fat: Number(fat),
-    };
-    // call onCreate with new meal => submit to parent
-    onCreate(newMeal);
-    // close the dialog
+    const success = submit();
+    if (!success) return;
+
     onClose();
     // clear keyboard
     Keyboard.dismiss();
@@ -64,18 +53,18 @@ export default function AddMealDialog({ onClose, onCreate }) {
             <TextInput
               placeholder='e.g. Pizza slice'
               style={styles.AddMealDialog.textInput}
-              value={name}
-              onChangeText={setName}
+              value={values.name}
+              onChangeText={(text) => setField('name', text)}
             />
           </View>
           <View style={styles.AddMealDialog.inputSection}>
             <Text style={styles.AddMealDialog.inputLabel}>Calories</Text>
             <TextInput
-              placeholder='0'
+              placeholder='Calories'
               style={styles.AddMealDialog.textInput}
               inputMode='numeric'
-              value={calories}
-              onChangeText={setCalories}
+              value={values.calories}
+              onChangeText={(text) => setField('calories', text)}
             />
           </View>
 
@@ -84,34 +73,37 @@ export default function AddMealDialog({ onClose, onCreate }) {
             <View style={styles.AddMealDialog.ingredientsInput}>
               <Text style={styles.AddMealDialog.inputLabel}>Protein (g)</Text>
               <TextInput
-                placeholder='0'
+                placeholder='Protein (g)'
                 style={styles.AddMealDialog.textInput}
                 inputMode='numeric'
-                value={protein}
-                onChangeText={setProtein}
+                value={values.protein}
+                onChangeText={(text) => setField('protein', text)}
               />
             </View>
             <View style={styles.AddMealDialog.ingredientsInput}>
               <Text style={styles.AddMealDialog.inputLabel}>Carbs (g)</Text>
               <TextInput
-                placeholder='0'
+                placeholder='Carbs (g)'
                 style={styles.AddMealDialog.textInput}
                 inputMode='numeric'
-                value={carbs}
-                onChangeText={setCarbs}
+                value={values.carbs}
+                onChangeText={(text) => setField('carbs', text)}
               />
             </View>
             <View style={styles.AddMealDialog.ingredientsInput}>
               <Text style={styles.AddMealDialog.inputLabel}>Fat (g)</Text>
               <TextInput
-                placeholder='0'
+                placeholder='Fat (g)'
                 style={styles.AddMealDialog.textInput}
                 inputMode='numeric'
-                value={fat}
-                onChangeText={setFat}
+                value={values.fat}
+                onChangeText={(text) => setField('fat', text)}
               />
             </View>
           </View>
+          {error && (
+            <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
+          )}
           <View
             style={{
               flexDirection: 'row',
