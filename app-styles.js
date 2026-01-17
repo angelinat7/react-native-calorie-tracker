@@ -123,7 +123,6 @@ export const styles = StyleSheet.create({
     },
     nutritionInfoText: {
       fontSize: 10,
-      lineHeight: 16,
     },
   },
   buttonStyles: {

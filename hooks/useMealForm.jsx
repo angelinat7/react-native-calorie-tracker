@@ -53,6 +53,7 @@ export function useMealForm(onSubmitMeal) {
     if (!validate()) return false;
 
     const meal = {
+      id: Date.now().toString(),
       name: values.name.trim(),
       calories: Number(values.calories),
       protein: Number(values.protein),

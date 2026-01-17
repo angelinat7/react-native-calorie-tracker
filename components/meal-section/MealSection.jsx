@@ -3,7 +3,12 @@ import { Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { styles } from '../../app-styles.js';
 import MealCard from '../meal-card/MealCard.jsx';
 
-export default function MealSection({ onAddMeal, meals }) {
+export default function MealSection({
+  onAddMeal,
+  meals,
+  totalCalories,
+  onDeleteMeal,
+}) {
   return (
     <>
       <View style={[styles.section]}>
@@ -11,10 +16,15 @@ export default function MealSection({ onAddMeal, meals }) {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'flex-s',
           }}
         >
-          <Text style={styles.subheading}>Meals</Text>
+          <View>
+            <Text style={styles.subheading}>Meals</Text>
+            <Text style={[styles.subheading, { fontSize: 16 }]}>
+              {totalCalories} cal
+            </Text>
+          </View>
           <TouchableOpacity
             hitSlop={10}
             onPress={onAddMeal}
@@ -22,12 +32,12 @@ export default function MealSection({ onAddMeal, meals }) {
             <Plus />
           </TouchableOpacity>
         </View>
-
-        <ScrollView style={{ height: 300, marginTop: 10 }}>
+        <ScrollView style={{ maxHeight: 300, marginTop: 10 }}>
           {meals.map((meal, index) => (
             <MealCard
               key={index}
               meal={meal}
+              onDeleteMeal={onDeleteMeal}
             />
           ))}
         </ScrollView>

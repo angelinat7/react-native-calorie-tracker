@@ -5,12 +5,21 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './app-styles.js';
 import AddMealDialog from './components/add-meal/AddMealDialog.jsx';
 import MealSection from './components/meal-section/MealSection.jsx';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 export default function App() {
   const [showAddMeal, setShowAddMeal] = useState(false);
   const [meals, setMeals] = useState([]);
+
+  const totalCalories = useMemo(
+    () => meals.reduce((total, meal) => total + meal.calories, 0),
+    [meals],
+  );
+
   const addMealPressHandler = () => {
     setShowAddMeal(true);
+  };
+  const onDeleteMealHandler = (id) => {
+    setMeals((currentMeals) => currentMeals.filter((meal) => meal.id !== id));
   };
   const createMealHandler = (meal) => {
     setMeals((currentMeals) => [...currentMeals, meal]);
@@ -34,7 +43,9 @@ export default function App() {
         {/* Meal Section */}
         <MealSection
           onAddMeal={addMealPressHandler}
+          onDeleteMeal={onDeleteMealHandler}
           meals={meals}
+          totalCalories={totalCalories}
         />
 
         {/* Add Meal Dialog */}

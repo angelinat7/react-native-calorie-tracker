@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../../app-styles.js';
 import { Dot } from 'lucide-react-native';
-export default function MealCard({ meal }) {
+export default function MealCard({ meal, onDeleteMeal }) {
   return (
     <View style={styles.MealCard.card}>
       <View style={styles.MealCard.title}>
@@ -28,7 +28,7 @@ export default function MealCard({ meal }) {
         </View>
         <TouchableOpacity
           hitSlop={10}
-          onPress={() => null}
+          onPress={() => onDeleteMeal(meal.id)}
         >
           <Text
             style={{

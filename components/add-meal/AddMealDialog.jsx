@@ -9,7 +9,6 @@ import {
 import { X } from 'lucide-react-native';
 import { styles } from '../../app-styles.js';
 import Button from '../../common/Button.jsx';
-import { useState } from 'react';
 import { useMealForm } from '../../hooks/useMealForm.jsx';
 
 export default function AddMealDialog({ onClose, onCreate }) {
